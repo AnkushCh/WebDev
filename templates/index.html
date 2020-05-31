@@ -1,0 +1,43 @@
+{% load socialaccount%}
+{% providers_media_js %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Home</title>
+    {% endblock title%}
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+        <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% block content %}
+    <h1>this is homepage</h1>
+    <a href="{% url 'signup' %}"><button>Signup</button></a>
+    <h1>Or</h1>
+    <a href="{% url 'login' %}"><button>Login</button></a>
+    <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
+    {% endblock %}
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+</body>
+</html>
