@@ -1,15 +1,53 @@
-{% load socialaccount%}
-{% providers_media_js %}
+
+{% load static %}
+{% load extras %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    
+    
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hack.css' %}">
     {% block title %}
     <title>Home</title>
     {% endblock title%}
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              {% if request.user|has_group:"Organizer" %}
+              <a class="nav-link" href="{% url 'org_dashboard' %}">Dashboard </a>
+              {% else %}
+              <a class="nav-link" href="{% url 'dashboard' %}">Dashboard </a>
+              {% endif %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
     {% if messages %}
     {% for message in messages %}
     {% if message.tags %}
@@ -31,13 +69,25 @@
         </div>
     {% endfor %}
     {% endif %}
+
+    
+
     {% block content %}
-    <h1>this is homepage</h1>
-    <a href="{% url 'signup' %}"><button>Signup</button></a>
-    <h1>Or</h1>
-    <a href="{% url 'login' %}"><button>Login</button></a>
-    <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
+    <div class="container" style="text-align: center">
+        <section>
+            
+            {% if user.is_authenticated %}
+            <h1>Welcome to Hackathon!!</h1>
+            {% else %}
+            <a href="{% url 'signup' %}"><button class="btn btn-outline-primary">Signup</button></a>
+            <h1>Or</h1>
+            <a href="{% url 'login' %}"><button class="btn btn-outline-primary">Login</button></a>
+            {% endif %}
+        </section>
+    </div>
     {% endblock %}
-    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+
 </body>
 </html>

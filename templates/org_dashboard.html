@@ -1,0 +1,7 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>This is organizer dashboard</h1>
+    <a href="{% url 'reglists' %}" ><button class="btn btn-outline-info">Hackathon Registrations</button></a>
+    <a href="{% url 'travellists' %}"><button class="btn btn-outline-info">Travel Reimbursement requests</button></a>
+    
+    {% endblock %}

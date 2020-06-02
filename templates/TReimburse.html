@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+	{% endblock %}
+	{% block content %}
+<div class="container">    
+<h1>Product form</h1>
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<fieldset>
+<div class="form-group row"><label for="id_travel_date" class="col-sm-2 col-form-label">Travel date:</label> 
+	<div class="col-sm-10">
+	<input type="date" class="form-control" name="travel_date" id="id_travel_date"></div>
+</div>
+<div class="form-group row"><label for="id_from_place" class="col-sm-2 col-form-label">From place:</label> 
+	<div class="col-sm-10">
+	<input type="text" class="form-control" name="from_place" maxlength="255" required="" id="id_from_place"></div>
+</div>
+<div class="form-group row"><label for="id_to_place" class="col-sm-2 col-form-label">To place:</label> 
+	<div class="col-sm-10">
+	<input type="text" class="form-control" name="to_place" maxlength="255" required="" id="id_to_place"></div>
+</div>
+<div class="form-group row"><label for="id_total_fare" class="col-sm-2 col-form-label">Total fare:</label> 
+	<div class="col-sm-10">
+	<input type="number" class="form-control" name="total_fare" min="0" required="" id="id_total_fare"></div>
+</div>
+<div class="form-group row"><label for="id_upload_bill" class="col-sm-2 col-form-label">Upload bill:</label> 
+	<div class="col-sm-10">
+	<input type="file" class="form-control" name="upload_bill" accept="image/*" id="id_upload_bill"></div>
+</div>
+<section style="text-align: center;">
+	<input type="submit" value="submit" class="btn btn-primary">
+</section>
+</fieldset>
+</form>
+</div>
+
+	{% endblock %}

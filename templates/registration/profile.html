@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Profile</h1>
+    <table class="table table-hover">
+
+        </thead>
+        <tbody>
+          <tr class="table-active">
+            <td>Username: </td>
+            <td>{{ user }}</td>
+          </tr>
+          <tr class="table-primary">
+            <td>First name: </td>
+            <td>{{ user.first_name }}</td>
+          </tr>
+          <tr class="table-secondary">
+            <td>Last name: </td>
+            <td>{{ user.last_name }}</td>
+          </tr>
+          <tr class="table-success">
+            <td>Email: </td>
+            <td>{{ user.email }}</td>
+          </tr>
+          <tr class="table-info">
+            <td>Phone: </td>
+            <td>{{ user.profile.phone_number }}</td>
+          </tr>
+          <tr>
+            <td colspan="2"><a href="{% url 'editprofile' %}"><button class="btn btn-primary btn-lg btn-block">Edit</button></a></td>
+          </tr>
+          <tr>
+            <td colspan="2"><a href="{{ domain }}{% url 'password_change' %}"><button class="btn btn-primary btn-lg btn-block">Change Password</button></a></td>
+          </tr>
+        </tbody>
+    </table> 
+</div>
+
+    
+{% endblock %}

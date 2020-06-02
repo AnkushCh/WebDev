@@ -1,18 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-        <div class="g-recaptcha" data-sitekey="6LcWbP4UAAAAAJIt5HsVeGD4qocq1g07Cyv0-SQ5"></div>
-        
-        <button type="submit" value="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends "index.html" %}
+{% load socialaccount%}
+{% providers_media_js %}
+{% block content %}
+<div class="container" style="text-align: center;">
+    <section>
+        <form method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>SignUp Form</legend>
+                    <div class="form-group row">
+                        <label for="id_username" class="col-sm-2 col-form-label">Username:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="username" maxlength="150" autofocus="" required="" id="id_username"><br><span class="helptext"><small class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_email" class="col-sm-2 col-form-label">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="email" maxlength="200" required="" id="id_email"><br><span class="helptext"><small class="form-text text-muted">Required</span></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_password1"  class="col-sm-2 col-form-label">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password1" autocomplete="new-password" required="" id="id_password1"><br><span class="helptext"><small class="form-text text-muted"><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul></small></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_password2" class="col-sm-2 col-form-label">Password confirmation:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password2" autocomplete="new-password" required="" id="id_password2"><br><span class="helptext"><small class="form-text text-muted">Enter the same password as before, for verification.</small></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LcWbP4UAAAAAJIt5HsVeGD4qocq1g07Cyv0-SQ5"></div>
+                        </div>
+                    </div>
+
+                <button class='btn btn-outline-primary' type="submit" value="submit">Submit</button>
+                </fieldset>
+            </form>
+                <h1>OR</h1>
+            <a href="{% provider_login_url 'google' %}"><button class="loginBtn loginBtn--google">Login with Google</button></a>
+    </section>
+    </div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

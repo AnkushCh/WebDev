@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="containre">
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Time Generated</th>
+        </tr>
+      </thead>
+<tbody>
+  
+{% for travels in travel_list %}
+<tr class="table-success">
+    <td><a href="{% url 'traveldetail' pk=travels.pk %}"><button class="btn btn-outline-primary">{{travels}}</button></a></td>
+    <td>{{travels.time_generated}}</td>
+</tr>
+    {% endfor %}
+    
+</div>
+{% endblock %}

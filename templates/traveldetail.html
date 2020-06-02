@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container">
+<table class="table table-hover">
+
+</thead>
+<tbody>
+  <tr class="table-active">
+    <td>User:  </td>
+    <td>{{ user }}</td>
+  </tr>
+  <tr class="table-primary">
+    <td>First name: </td>
+    <td>{{traveldetail.user.username}}</td>
+  </tr>
+  <tr class="table-secondary">
+    <td>Travel Date: </td>
+    <td> {{traveldetail.travel_date}}</td>
+  </tr>
+  <tr class="table-success">
+    <td>From Place:  </td>
+    <td>{{traveldetail.from_place}}</td>
+  </tr>
+  <tr class="table-info">
+    <td>To place:</td>
+    <td> {{traveldetail.to_place}}</td>
+  </tr>
+  <tr class="table-warning">
+    <td>Total Fare:</td>
+    <td> {{traveldetail.total_fare}}</td>
+  </tr>
+  <tr class="table-error">
+    <td>Time Generated:</td>
+    <td> {{traveldetail.time_generated}}</td>
+  </tr>
+  <tr>
+    <td>Bill Image:</td>
+    <td><img src="{{traveldetail.upload_bill.url}}" alt="image not displayed" height="500px" width="500px"></td>
+  </tr>
+</tbody>
+</table> 
+</div>
+
+ 
+{% endblock %}

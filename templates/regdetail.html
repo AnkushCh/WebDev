@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% block content %}
+
+    <div class="container">
+        <table class="table table-hover">
+        
+        </thead>
+        <tbody>
+          <tr class="table-active">
+            <td>User:  </td>
+            <td>{{regdetail.user.username}}</td>
+          </tr>
+          <tr class="table-primary">
+            <td>city: </td>
+            <td>{{regdetail.city}}</td>
+          </tr>
+          <tr class="table-secondary">
+            <td>country: </td>
+            <td> {{regdetail.country}}</td>
+          </tr>
+          <tr class="table-success">
+            <td>company/college:  </td>
+            <td>{{regdetail.company}}</td>
+          </tr>
+          <tr class="table-info">
+            <td>gender: :</td>
+            <td> {{regdetail.gender}}</td>
+          </tr>
+          <tr class="table-warning">
+            <td>Sign Up As: </td>
+            <td>{{regdetail.signup_as}}</td>
+          </tr>
+          <tr class="table-success">
+            <td>I have a Student ID: </td>
+            <td>{{regdetail.student_id}}</td>
+          </tr>
+          <tr>
+            <td>I am interested in employment opportunities: </td>
+            <td>{{regdetail.emp_opportunity}}</td>
+          </tr>
+          <tr class="table-info">
+          <td>I learned about hackathon from':</td>
+          <td> {{regdetail.learn_ab_hackathon}}</td>
+          </tr>
+          <tr class="table-primary">
+          <td>github url: </td>
+          <td>{{regdetail.github_url}}</td>
+            </tr>
+          <tr class="table-secondary">
+          <td>Please tell us about your core strengths and how you can contribute to a Team: 
+          <td>{{regdetail.how_contribute}}</td>
+        </tr>
+          <tr class="table-success">
+          <td>Total Votes: </td>
+          <td>{{regdetail.votes_total}}</td>
+        </tr>
+        <tr class="table-info">
+        <td><a href="{%url 'upvote' pk=regdetail.pk %}">Upvote</a></td>
+        <td><a href="{% url 'downvote' pk=regdetail.pk %}">Downvote</a></td>
+        </tr>
+          
+          
+        </tbody>
+        </table> 
+        </div>
+{% endblock %}

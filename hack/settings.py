@@ -8,7 +8,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
-
 """
 
 import os
@@ -24,11 +23,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^5bs*_k_yt4hu4qa7s^t^p3dz81^--v3l7yi@lfjrjqn_-rdqa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-RECAPTCHA_PUBLIC_KEY = '6LcWbP4UAAAAAJIt5HsVeGD4qocq1g07Cyv0-SQ5'
-RECAPTCHA_PRIVATE_KEY = '6LcWbP4UAAAAAM_Wk1GzgO_TfmJk-Z6WMoEG_rpv'
-
-RECAPTCHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:8000'}
-
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -44,14 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    'formtools',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'phonenumber_field',
     'hack_app',
-    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +121,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# user profile
+AUTH_PROFILE_MODULE = 'accounts.Profile'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -137,12 +133,23 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 STATIC_URL = '/static/'
 
+# media directory
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'suport.leavemaster@gmail.com'
+EMAIL_HOST_PASSWORD = 'XjpWqnTGF375VJrN'
+EMAIL_PORT = 587
+EMAIL_USE_SSL = False
+
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
@@ -153,3 +160,23 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend'
 )
 SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+
+RECAPTCHA_PUBLIC_KEY = '6LcWbP4UAAAAAJIt5HsVeGD4qocq1g07Cyv0-SQ5'
+RECAPTCHA_PRIVATE_KEY = '6LcWbP4UAAAAAM_Wk1GzgO_TfmJk-Z6WMoEG_rpv'
+
+RECAPTCHA_PROXY = {'http': 'http://hackathon27.herokuapp.com', 'https': 'https://hackathon27.herokuapp.com'}
+
+LOGOUT_REDIRECT_URL = '/'
