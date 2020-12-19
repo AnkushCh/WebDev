@@ -141,14 +141,14 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 import django_heroku
 django_heroku.settings(locals())
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp-relay.sendinblue.com'
-EMAIL_HOST_USER = 'suport.leavemaster@gmail.com'
-EMAIL_HOST_PASSWORD = 'XjpWqnTGF375VJrN'
-EMAIL_PORT = 587
-EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp-relay.sendinblue.com'
+# EMAIL_HOST_USER = 'suport.leavemaster@gmail.com'
+# EMAIL_HOST_PASSWORD = 'XjpWqnTGF375VJrN'
+# EMAIL_PORT = 587
+# EMAIL_USE_SSL = False
 
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

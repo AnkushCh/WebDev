@@ -1,0 +1,5 @@
+Online Adaptive Assessment Platform 
+
+Aspirants/Students can be assessed on different fields using this website. Fields can be Reasoning, Aptitude, Technical MCQ, Coding etc. This will be an online platform with questions at different levels (Difficulty). Candidate would start at assessment with a medium difficulty question and depending on its response, the platform should decide the next level of questions to be shown (level would increase or decrease as per response). Each question would be assigned a weightage and time duration. 
+
+From Project list of minor projects located at 83 page. 
